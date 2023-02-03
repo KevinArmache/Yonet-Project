@@ -11,7 +11,14 @@ module.exports = {
   ],
 
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'primary': '#3183FF',
+        'secondary': '#636363',
+        'light': '#F7F7F7',
+        'variant': '#979797'
+      }
+    },
   },
   plugins: [],
 };
