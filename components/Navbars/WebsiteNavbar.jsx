@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Link from 'next/link';
 import SearchForm from 'components/Forms/SearchForm';
+import CategoriesDropDown from 'components/DropDowns/CategoriesDropDown';
 
 const WebsiteNavbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,13 +14,11 @@ const WebsiteNavbar = () => {
               <Link href="/" className="text-2xl lg:text-4xl text-primary font-semibold lg:font-bold">
                 Yonet!
               </Link>
-              <div className="hidden lg:flex space-x-4 text-gray-900">
-                <Link href="/" className="text-secondary text-base">
+              <div className="hidden uppercase text-sm font-semibold lg:flex space-x-4 text-gray-900">
+                <Link href="/" className="text-secondary">
                   Accueil
                 </Link>
-                <Link href="/" className="text-secondary text-base">
-                  Catégories
-                </Link>
+                <CategoriesDropDown />
               </div>
               <div className="hidden lg:flex space-x-4">
                 <SearchForm />
