@@ -14,8 +14,8 @@ const WebsiteNavbar = () => {
               <Link href="/" className="text-2xl lg:text-4xl text-primary font-semibold lg:font-bold">
                 Yonet!
               </Link>
-              <div className="hidden uppercase text-sm font-semibold lg:flex space-x-4 text-gray-900">
-                <Link href="/" className="text-secondary">
+              <div className="hidden text-sm font-semibold lg:flex space-x-4 text-gray-900">
+                <Link href="/" className="text-secondary uppercase">
                   Accueil
                 </Link>
                 <CategoriesDropDown />
@@ -26,14 +26,14 @@ const WebsiteNavbar = () => {
             </div>
             <div className='hidden lg:flex items-center space-x-4'>
               <button
-                className='text-base font-medium px-4  py-1 bg-transparent text-primary hover:text-white hover:bg-primary rounded'
+                className='text-sm font-medium px-4 py-2 bg-transparent text-primary hover:text-white hover:bg-primary rounded uppercase'
               >
                 Connexion
               </button>
               <button
-                className='text-base font-medium px-4 py-1 bg-primary text-white hover:text-primary hover:bg-white border hover:border-primary rounded'
+                className='text-sm font-medium px-4 py-2 bg-primary text-white hover:text-primary hover:bg-white border hover:border-primary uppercase rounded'
               >
-                Devenir vendeur
+                Pour les vendeurs
               </button>
             </div>
             <div className="lg:hidden">

@@ -32,10 +32,10 @@ export default function CategoriesDropDown() {
             <Popover.Button
               className={`
                 ${open ? '' : 'text-opacity-90'}
-                group inline-flex items-center space-x-1 text-secondary hover:text-opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus:ring-secondary uppercase`}
+                group inline-flex items-center space-x-1 text-secondary hover:text-opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75 focus:ring-secondary`}
             >
               <ListBulletIcon className="w-4 h-4 text-inherit" />
-              <span>Catégories</span>
+              <span className='uppercase'>Catégories</span>
             </Popover.Button>
             <Transition
               as={Fragment}

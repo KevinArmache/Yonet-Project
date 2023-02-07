@@ -23,7 +23,7 @@ const SearchForm = () => {
             type="text"
             name="query"
             onChange={queryChangeHandler}
-            className="ml-4 flex-grow overflow-hidden w-full placeholder-current text-base lg:text-lg h-full transition duration-200 border-none outline-none focus:outline-none focus:border-none rounded-l appearance-none md:mb-0 bg-transparent"
+            className="ml-4 flex-grow overflow-hidden w-full placeholder-current font-normal text-base h-full transition duration-200 border-none outline-none focus:outline-none focus:border-none rounded-l appearance-none md:mb-0 bg-transparent"
           />
           <button className='bg-primary w-12 h-full flex items-center justify-center overflow-hidden rounded-r' type="submit" aria-label="search">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 text-light">
