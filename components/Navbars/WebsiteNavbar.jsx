@@ -16,7 +16,7 @@ const WebsiteNavbar = () => {
               </Link>
               <div className="hidden text-sm font-semibold lg:flex space-x-4 text-gray-900">
                 <Link href="/" className="text-secondary uppercase">
-                  Accueil
+                  à Propos
                 </Link>
                 <CategoriesDropDown />
               </div>

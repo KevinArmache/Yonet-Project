@@ -14,7 +14,7 @@ const Categories = () => {
             Catégories Populaires
           </h1>
           <div className='mb-8'>
-            <LinkButtons url="#" text="View More" buttonIcon={ArrowRightIcon} />
+            <LinkButtons url="#" text="Voir Plus" buttonIcon={ArrowRightIcon} />
           </div>
         </div>
         <div className='grid grid-cols-2 gap-2 md:gap-4 md:grid-cols-3 lg:grid-cols-4'>
