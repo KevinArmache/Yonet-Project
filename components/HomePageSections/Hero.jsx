@@ -11,7 +11,7 @@ const Hero = () => {
           <h1 className='max-w-xl mb-6 font-sans text-7xl font-extrabold leading-none tracking-tight text-primary sm:text-8xl md:mx-auto'>
             Simplifie toi la Vie
           </h1>
-          <p className="text-base text-gray-700 md:text-lg">
+          <p className="text-base text-variant md:text-lg">
             Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque rem aperiam, eaque ipsa quae.
           </p>
           <div className='hidden md:block'>
