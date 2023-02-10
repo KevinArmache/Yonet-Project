@@ -1,5 +1,6 @@
 import { ArrowRightIcon } from '@heroicons/react/20/solid'
 import LinkButtons from 'components/Buttons/LinkButtons'
+import Image from 'next/image'
 import React from 'react'
 
 const HowItWorks = () => {
@@ -15,22 +16,28 @@ const HowItWorks = () => {
         <div className='grid gap-10 lg:grid-cols-2'>
           <div className="flex items-center justify-center -mx-4 lg:pl-8">
             <div className="flex flex-col items-end px-3">
-              <img
+              <Image
                 className="object-cover mb-6 rounded shadow-lg h-28 sm:h-48 xl:h-56 w-28 sm:w-48 xl:w-56"
-                src="https://st4.depositphotos.com/16490812/38513/i/600/depositphotos_385133228-stock-photo-producer-dj-mixer-in-a.jpg"
+                src="/asset/images/beatmaker.jpg"
                 alt=""
+                width={1080}
+                height={720}
               />
               <img
                 className="object-cover w-20 h-20 rounded shadow-lg sm:h-32 xl:h-40 sm:w-32 xl:w-40"
-                src="https://img.freepik.com/photos-premium/monteur-video-africain-travaillant-images-du-son-editant-nouveau-projet-montage-film-coupe-assis-dans-bureau-agence-moderne_482257-5422.jpg"
+                src="/asset/images/video-editor.jpeg"
                 alt=""
+                width={1080}
+                height={720}
               />
             </div>
             <div className="px-3">
               <img
                 className="object-cover w-40 h-40 rounded shadow-lg sm:h-64 xl:h-80 sm:w-64 xl:w-80"
-                src="https://static9.depositphotos.com/1518767/1119/i/450/depositphotos_11192648-stock-photo-close-up-of-a-cute.jpg"
+                src="/asset/images/voice-artist.jpg"
                 alt=""
+                width={1080}
+                height={720}
               />
             </div>
           </div>
@@ -241,20 +248,26 @@ const HowItWorks = () => {
             <div className="flex flex-col items-end px-3">
               <img
                 className="object-cover mb-6 rounded shadow-lg h-28 sm:h-48 xl:h-56 w-28 sm:w-48 xl:w-56"
-                src="https://cdn.futura-sciences.com/sources/images/qr/studio-audiovideo-enregistrement-youtubeur-1.jpeg"
+                src="/asset/images/youtuber.jpeg"
                 alt=""
+                width={1080}
+                height={720}
               />
               <img
                 className="object-cover w-20 h-20 rounded shadow-lg sm:h-32 xl:h-40 sm:w-32 xl:w-40"
-                src="https://static.vecteezy.com/ti/photos-gratuite/t2/3653627-asia-girl-radio-host-record-podcast-use-microphone-wear-headphone-interview-celebrity-guest-content-conversation-talk-and-listen-in-her-room-audio-podcast-from-home-concept-de-sonorisation-photo.jpg"
+                src="/asset/images/podcaster.jpg"
                 alt=""
+                width={1080}
+                height={720}
               />
             </div>
             <div className="px-3">
               <img
                 className="object-cover w-40 h-40 rounded shadow-lg sm:h-64 xl:h-80 sm:w-64 xl:w-80"
-                src="https://imgresizer.eurosport.com/unsafe/1200x0/filters:format(jpeg):focal(1439x508:1441x506)/origin-imgresizer.eurosport.com/2020/05/08/2816174-58088508-2560-1440.jpg"
+                src="/asset/images/twitchplayer.jpg"
                 alt=""
+                width={1080}
+                height={720}
               />
             </div>
           </div>

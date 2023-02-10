@@ -3,6 +3,8 @@ import WebsiteLayout from "layouts/WebsiteLayout";
 import Hero from "components/HomePageSections/Hero";
 import Categories from "components/HomePageSections/Categories";
 import HowItWorks from "components/HomePageSections/HowItWorks";
+import About from "components/HomePageSections/About";
+import Action from "components/HomePageSections/Action";
 
 
 export default function Home() {
@@ -11,6 +13,8 @@ export default function Home() {
       <Hero/>
       <Categories />
       <HowItWorks />
+      <About/>
+      <Action />
     </WebsiteLayout>
   );
 }
