@@ -14,12 +14,12 @@ const SearchForm = () => {
   };
 
   return (
-    <div className='py-2 md:py-4 px-4 mx-auto min-w-[400px]'>
+    <div className='py-2 md:py-4 px-4 mx-auto lg:min-w-[400px]'>
       <form onSubmit={submitHandler}>
-        <div className="flex mx-auto w-full bg-light text-secondary items-center justify-start rounded h-12">
+        <div className="flex w-full bg-light text-secondary items-center justify-start rounded h-12">
 
           <input
-            placeholder="Rechercher..."
+            placeholder="Rechercher un service"
             type="text"
             name="query"
             onChange={queryChangeHandler}

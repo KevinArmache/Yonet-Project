@@ -14,7 +14,7 @@ const Hero = () => {
           <p className="text-base text-variant md:text-lg">
             Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque rem aperiam, eaque ipsa quae.
           </p>
-          <div className='hidden md:block'>
+          <div className='mt-8 lg:block'>
             <SearchForm />
           </div>
         </div>
