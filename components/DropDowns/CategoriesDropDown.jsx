@@ -1,5 +1,4 @@
 import { Popover, Transition } from '@headlessui/react'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { ListBulletIcon } from '@heroicons/react/24/solid'
 import { Fragment } from 'react'
 
