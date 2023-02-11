@@ -3,6 +3,7 @@ import Link from 'next/link';
 import SearchForm from 'components/Forms/SearchForm';
 import CategoriesDropDown from 'components/DropDowns/CategoriesDropDown';
 import { Transition } from '@headlessui/react';
+import Button from 'components/Buttons/Button';
 
 const WebsiteNavbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,23 +24,15 @@ const WebsiteNavbar = () => {
                 </Link>
                 <CategoriesDropDown />
               </div>
-              <div className="hidden lg:flex space-x-4">
+              <div className="hidden xl:flex space-x-4">
                 <SearchForm />
               </div>
             </div>
-            <div className='hidden lg:flex items-center space-x-4'>
-              <button
-                className='text-sm font-medium px-4 py-2 bg-transparent text-primary hover:text-white hover:bg-primary rounded uppercase'
-              >
-                Connexion
-              </button>
-              <button
-                className='text-sm font-medium px-4 py-2 bg-primary text-white hover:text-primary hover:bg-white border hover:border-primary uppercase rounded'
-              >
-                Pour les vendeurs
-              </button>
+            <div className='hidden xl:flex items-center space-x-4'>
+              <Button text="Connexion" variant="noborder" url="/connexion" />
+              <Button text="Pour les vendeurs" url="/pour-les-vendeurs" />
             </div>
-            <div className="lg:hidden">
+            <div className="xl:hidden">
               <div className="flex items-center justify-center">
                 <button
                   aria-label="Open SearchBar"
@@ -143,7 +136,7 @@ const WebsiteNavbar = () => {
                             className="p-2 -mt-2 -mr-2 transition duration-200 rounded hover:bg-primary focus:bg-primary focus:outline-none focus:shadow-outline"
                             onClick={() => setIsMenuOpen(false)}
                           >
-                            <svg className="w-5 text-primary hover:text-white" viewBox="0 0 24 24">
+                            <svg className="w-5 text-primary hover:text-white focus:text-white" viewBox="0 0 24 24">
                               <path
                                 fill="currentColor"
                                 d="M19.7,4.3c-0.4-0.4-1-0.4-1.4,0L12,10.6L5.7,4.3c-0.4-0.4-1-0.4-1.4,0s-0.4,1,0,1.4l6.3,6.3l-6.3,6.3 c-0.4,0.4-0.4,1,0,1.4C4.5,19.9,4.7,20,5,20s0.5-0.1,0.7-0.3l6.3-6.3l6.3,6.3c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3 c0.4-0.4,0.4-1,0-1.4L13.4,12l6.3-6.3C20.1,5.3,20.1,4.7,19.7,4.3z"
@@ -152,19 +145,26 @@ const WebsiteNavbar = () => {
                           </button>
                         </div>
                       </div>
-                      <nav>
-                        <ul className="space-y-4">
-                          <li>
-                            <Link href="/" className="text-secondary text-base">
-                              Accueil
-                            </Link>
-                          </li>
-                          <li>
-                            <CategoriesDropDown />
-                          </li>
-                        </ul>
-                      </nav>
-                    </div>
+                      <div className='relative h-full'>
+                        <nav className='absolute w-full top-0 left-0'>
+                          <ul className="my-12 space-y-4 text-lg font-semibold">
+                            <li>
+                              <Link href="/" className="text-secondary">
+                                Accueil
+                              </Link>
+                            </li>
+                            <li>
+                              <CategoriesDropDown />
+                            </li>
+                          </ul>
+                        </nav>
+                        <div className='absolute bottom-24 left-0 flex flex-col w-full space-y-2'>
+                          <Button text="Connexion" variant="noborder" url="/connexion" />
+                          <Button text="Pour les vendeurs" url="/pour-les-vendeurs" />
+                        </div>
+                      </div>
+
+                      </div>
                   </div>
                 </Transition>
               )}
