@@ -1,3 +1,4 @@
+import "tailwindcss/tailwind.css";
 import '@/styles/globals.css'
 import { League_Spartan } from "@next/font/google";
 

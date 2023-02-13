@@ -1,4 +1,4 @@
-import "tailwindcss/tailwind.css";
+
 import WebsiteLayout from "layouts/WebsiteLayout";
 import Hero from "components/HomePageSections/Hero";
 import Categories from "components/HomePageSections/Categories";
