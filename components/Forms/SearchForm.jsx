@@ -10,7 +10,7 @@ const SearchForm = () => {
   };
   const submitHandler = (e) => {
     e.preventDefault();
-    router.push(`/search?q=${query}`);
+    router.push(`/rechercher?q=${query}`);
   };
 
   return (
@@ -20,7 +20,7 @@ const SearchForm = () => {
 
           <input
             placeholder="Rechercher un service"
-            type="text"
+            type="search"
             name="query"
             onChange={queryChangeHandler}
             className="ml-4 flex-grow overflow-hidden w-full placeholder-current font-normal text-base h-full transition duration-200 border-none outline-none focus:outline-none focus:border-none rounded-l appearance-none md:mb-0 bg-transparent"
