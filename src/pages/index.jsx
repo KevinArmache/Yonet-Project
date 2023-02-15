@@ -8,14 +8,12 @@ import WebsiteNavbar from "components/Navbars/WebsiteNavbar";
 
 export default function Home() {
   return (
-    <div>
-      <WebsiteLayout title="Les meileurs freelancers dans la création de contenus">
-        <Hero />
-        <Categories />
-        <HowItWorks />
-        <About />
-        <Action />
-      </WebsiteLayout>
-    </div>
+    <WebsiteLayout title="Les meileurs freelancers dans la création de contenus">
+      <Hero />
+      <Categories />
+      <HowItWorks />
+      <About />
+      <Action />
+    </WebsiteLayout>
   );
 }
