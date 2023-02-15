@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.nowrap-white-space {
+  border: solid red 2px;
+}
