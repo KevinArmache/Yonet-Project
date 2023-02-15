@@ -1,8 +1,8 @@
 
 import WebsiteLayout from "layouts/WebsiteLayout";
 import Action from "components/HomePageSections/Action";
-import WebsitePageHeader from "components/Headers/WebsitePageHeader";
 import Filter from "components/Headers/Filter";
+import ServiceCard from "components/Cards/ServiceCard";
 
 
 export default function Rechercher() {
@@ -11,9 +11,9 @@ export default function Rechercher() {
       <Filter title="Résultats pour">
         {/* Services grid */}
         <div className="lg:col-span-3">
-          {/* Replace with your content */}
-          <div className="h-96 rounded-lg border-4 border-dashed border-gray-200 lg:h-full" />
-          {/* /End replace */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            <ServiceCard />
+          </div>
         </div>
       </Filter>
       <Action />
