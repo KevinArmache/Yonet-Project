@@ -24,10 +24,15 @@ const WebsiteNavbar = () => {
               <Link
                 href="/"
                 className="text-secondary uppercase whitespace-nowrap"
+                passHref
               >
                 à Propos
               </Link>
-              <Link href="/services" className="text-secondary uppercase">
+              <Link
+                href="/services"
+                className="text-secondary uppercase"
+                passHref
+              >
                 Services
               </Link>
               <CategoriesDropDown />
@@ -193,7 +198,6 @@ const WebsiteNavbar = () => {
                           url="/connexion"
                         />
                         <Button
-                          className="whitespace-nowrap nowrap-white-space"
                           text="Pour les vendeurs"
                           url="/pour-les-vendeurs"
                         />
