@@ -1,6 +1,6 @@
 import React from "react";
 import WebsiteLayout from "layouts/WebsiteLayout";
-import Head from "next/head";
+import ServiceDetail from "components/Cards/ServiceDetail";
 
 const Services = () => {
   return (
@@ -9,7 +9,7 @@ const Services = () => {
         <div className="container mx-auto">
           <div className="container-filter-bar p-10 ">
             <select name="cars" id="cars">
-              <option value="" disabled selected>
+              <option value="Catégorie" disabled selected>
                 Catégorie
               </option>
               <option value="saab">Saab</option>
@@ -96,6 +96,8 @@ const Services = () => {
               </svg>
             </button>
           </div>
+
+          <ServiceDetail />
         </div>
       </WebsiteLayout>
     </>
