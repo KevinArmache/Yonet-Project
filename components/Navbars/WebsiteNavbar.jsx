@@ -187,6 +187,15 @@ const WebsiteNavbar = () => {
                             </Link>
                           </li>
                           <li>
+                            <Link
+                              href="/services"
+                              className="text-secondary"
+                              passHref
+                            >
+                              Services
+                            </Link>
+                          </li>
+                          <li>
                             <CategoriesDropDown />
                           </li>
                         </ul>
