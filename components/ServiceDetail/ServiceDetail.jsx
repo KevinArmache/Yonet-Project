@@ -6,7 +6,7 @@ import Link from "next/link";
 const ServiceDetail = () => {
   return (
     <div className={`${styles.container}`}>
-      <div className="image-service-detail">
+      <div className={`${styles.imageofservice}`}>
         <Image
           src="/asset/images/beatmaker.jpg"
           alt="Picture of the author"
@@ -20,8 +20,8 @@ const ServiceDetail = () => {
             <Image
               src="/asset/images/beatmaker.jpg"
               alt="Picture of the author"
-              width={40}
-              height={60}
+              width={50}
+              height={50}
               className={`${styles.userimage}`}
             />
             <span>@ChrisBeatz</span>

@@ -172,4 +172,9 @@
     width: 90%;
     margin: 0 auto;
   }
+
+  .imageofservice > img {
+    padding: 10px;
+    /* margin: 200px; */
+  }
 }
