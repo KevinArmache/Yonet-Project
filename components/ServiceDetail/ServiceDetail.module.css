@@ -5,7 +5,7 @@
 .container > div {
   display: flex;
   width: 40%;
-  justify-content: space-evenly;
+  justify-content: space-around;
   /* border: solid 2px red; */
 }
 

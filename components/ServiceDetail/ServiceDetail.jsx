@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const ServiceDetail = () => {
   return (
-    <div className={`${styles.container}`}>
+    <div className={`${styles.container} pb-12`}>
       <div className={`${styles.imageofservice}`}>
         <Image
           src="/asset/images/beatmaker.jpg"
@@ -35,7 +35,7 @@ const ServiceDetail = () => {
             <span>{`(4,8)`} 349 avis</span>
           </div>
           <div className={`${styles.descriptionservice}`}>
-            <h2 className="p-5 font-bold text-5xl">
+            <h2 className="p-5 font-bold text-4xl">
               Création d'un générique d'entrée
             </h2>
             <p className="p-5">
@@ -47,7 +47,7 @@ const ServiceDetail = () => {
               eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam
               est, qui dolorem ipsum quia dolor sit amet, consectetur,
             </p>
-            <div className={`${styles.priceandprofil} p-5`}>
+            <div className={`${styles.priceandprofil} p-5 `}>
               <span>250€</span>
               <Link href="/">Voir le profil</Link>
             </div>

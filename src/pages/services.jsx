@@ -1,6 +1,7 @@
 import React from "react";
 import WebsiteLayout from "layouts/WebsiteLayout";
 import ServiceDetail from "components/ServiceDetail/ServiceDetail";
+import SimilarCard from "components/SimilarCard/SimilarCard";
 
 const Services = () => {
   return (
@@ -9,7 +10,7 @@ const Services = () => {
         <div className="container mx-auto">
           <div className="container-filter-bar p-10 ">
             <select name="cars" id="cars">
-              <option value="Catégorie" disabled>
+              <option value="" disabled selected>
                 Catégorie
               </option>
               <option value="saab">Saab</option>
@@ -17,7 +18,7 @@ const Services = () => {
               <option value="audi">Audi</option>
             </select>
             <select name="cars" id="cars">
-              <option value="" disabled>
+              <option value="" disabled selected>
                 Localisation
               </option>
               <option value="saab">Saab</option>
@@ -25,7 +26,7 @@ const Services = () => {
               <option value="audi">Audi</option>
             </select>
             <select name="cars" id="cars">
-              <option value="" disabled>
+              <option value="" disabled selected>
                 Budget
               </option>
               <option value="saab">Saab</option>
@@ -33,7 +34,7 @@ const Services = () => {
               <option value="audi">Audi</option>
             </select>
             <select name="cars" id="cars">
-              <option value="" disabled>
+              <option value="" disabled selected>
                 Prestataire
               </option>
               <option value="saab">Saab</option>
@@ -96,8 +97,21 @@ const Services = () => {
               </svg>
             </button>
           </div>
-
           <ServiceDetail />
+        </div>
+        <h3 className="color-gray text-3xl pl-12 font-bold">
+          Services similaires
+        </h3>
+        <div className="container-similar-recommended">
+          <div className="container-similar">
+            <SimilarCard />
+            <SimilarCard />
+            <SimilarCard />
+            <SimilarCard />
+          </div>
+          <div className="container-recommended">
+            <SimilarCard />
+          </div>
         </div>
       </WebsiteLayout>
     </>
