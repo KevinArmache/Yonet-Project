@@ -7,6 +7,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 }
 .container-filter-bar > select {
   border-left: 0px;
@@ -24,4 +25,8 @@
   color: #979797;
   background-color: #f7f7f7;
 }
+.container-filter-bar > button > svg {
+  background-color: #f7f7f7;
+}
+
 /* END - SERVICE PAGE CSS  */

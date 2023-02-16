@@ -1,6 +1,6 @@
 import React from "react";
 import WebsiteLayout from "layouts/WebsiteLayout";
-import ServiceDetail from "components/Cards/ServiceDetail";
+import ServiceDetail from "components/ServiceDetail/ServiceDetail";
 
 const Services = () => {
   return (
