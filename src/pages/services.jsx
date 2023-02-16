@@ -9,7 +9,7 @@ const Services = () => {
         <div className="container mx-auto">
           <div className="container-filter-bar p-10 ">
             <select name="cars" id="cars">
-              <option value="Catégorie" disabled selected>
+              <option value="Catégorie" disabled>
                 Catégorie
               </option>
               <option value="saab">Saab</option>
@@ -17,7 +17,7 @@ const Services = () => {
               <option value="audi">Audi</option>
             </select>
             <select name="cars" id="cars">
-              <option value="" disabled selected>
+              <option value="" disabled>
                 Localisation
               </option>
               <option value="saab">Saab</option>
@@ -25,7 +25,7 @@ const Services = () => {
               <option value="audi">Audi</option>
             </select>
             <select name="cars" id="cars">
-              <option value="" disabled selected>
+              <option value="" disabled>
                 Budget
               </option>
               <option value="saab">Saab</option>
@@ -33,7 +33,7 @@ const Services = () => {
               <option value="audi">Audi</option>
             </select>
             <select name="cars" id="cars">
-              <option value="" disabled selected>
+              <option value="" disabled>
                 Prestataire
               </option>
               <option value="saab">Saab</option>
