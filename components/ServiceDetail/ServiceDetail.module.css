@@ -7,7 +7,6 @@
   width: 40%;
   justify-content: space-evenly;
   /* border: solid 2px red; */
-  border: solid 2px red;
 }
 
 .container > div > img {
@@ -16,7 +15,6 @@
 }
 
 .userinfo {
-  border: solid 2px green;
   width: 100%;
 }
 .userinfo > div:nth-child(1) {
@@ -25,7 +23,7 @@
   height: auto;
   justify-content: space-evenly;
   /* border: solid 2px red; */
-  border: solid 2px blue;
+
   align-items: center;
   width: 55%;
 }
