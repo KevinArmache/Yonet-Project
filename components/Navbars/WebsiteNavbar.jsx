@@ -5,12 +5,12 @@ import CategoriesDropDown from "components/DropDowns/CategoriesDropDown";
 import { Transition } from "@headlessui/react";
 import Button from "components/Buttons/Button";
 
-const WebsiteNavbar = () => {
+const WebsiteNavbar = ({solid}) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchBarVisible, setIsSearchBarVisible] = useState(false);
 
   return (
-    <nav className="sticky rounded top-0 z-50 bg-light backdrop-filter backdrop-blur-lg bg-opacity-30 shadow-md">
+    <nav className={`${solid ? "bg-white" : "bg-light backdrop-filter backdrop-blur-lg bg-opacity-30"} sticky rounded top-0 z-50 shadow-md`}>
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center justify-start space-x-12">
