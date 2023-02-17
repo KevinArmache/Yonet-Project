@@ -1,0 +1,30 @@
+.recommended_card {
+  display: flex;
+  /* border: solid 2px red; */
+  margin-top: 10px;
+  background-color: white;
+}
+.recommended_image {
+  border-radius: 100%;
+}
+.recommended_card > div {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.recommended_card > div:nth-child(1) {
+  width: 90px;
+}
+
+@media screen and (max-width: 1200px) {
+  .recommended_card > div:nth-child(1) {
+    width: 130px;
+  }
+}
+
+@media screen and (max-width: 501px) {
+  .recommended_card > div:nth-child(1) {
+    width: 180px;
+  }
+}

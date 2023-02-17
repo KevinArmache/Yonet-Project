@@ -10,7 +10,7 @@ function SimilarCard() {
         width={500}
         height={500}
       />
-      <span className="service-similar-by-username text-sx">
+      <span className="service-similar-by-username text-s">
         Sample Service Audio
         <br />
         Par @user

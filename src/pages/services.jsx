@@ -2,6 +2,7 @@ import React from "react";
 import WebsiteLayout from "layouts/WebsiteLayout";
 import ServiceDetail from "components/ServiceDetail/ServiceDetail";
 import SimilarCard from "components/SimilarCard/SimilarCard";
+import RecommendedCard from "components/RecommendedCard/RecommendedCard";
 
 const Services = () => {
   return (
@@ -102,7 +103,7 @@ const Services = () => {
 
         <div className="container-similar-recommended">
           <div className="container-similar mb-12">
-            <h3 className="color-gray text-3xl  font-bold container-similar-recommended-text">
+            <h3 className="color-gray text-3xl pl-5 font-bold container-similar-recommended-text">
               Services similaires
             </h3>
             <div>
@@ -115,9 +116,11 @@ const Services = () => {
 
           <div className="container-recommended">
             <h3 className="color-gray text-3xl  font-bold container-similar-recommended-text">
-              Services similaires
+              Recommandations
             </h3>
-            <SimilarCard />
+            <RecommendedCard />
+            <RecommendedCard />
+            <RecommendedCard />
           </div>
         </div>
       </WebsiteLayout>
