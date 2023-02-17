@@ -99,17 +99,24 @@ const Services = () => {
           </div>
           <ServiceDetail />
         </div>
-        <h3 className="color-gray text-3xl pl-12 font-bold">
-          Services similaires
-        </h3>
+
         <div className="container-similar-recommended">
-          <div className="container-similar">
-            <SimilarCard />
-            <SimilarCard />
-            <SimilarCard />
-            <SimilarCard />
+          <div className="container-similar mb-12">
+            <h3 className="color-gray text-3xl  font-bold container-similar-recommended-text">
+              Services similaires
+            </h3>
+            <div>
+              <SimilarCard />
+              <SimilarCard />
+              <SimilarCard />
+              <SimilarCard />
+            </div>
           </div>
+
           <div className="container-recommended">
+            <h3 className="color-gray text-3xl  font-bold container-similar-recommended-text">
+              Services similaires
+            </h3>
             <SimilarCard />
           </div>
         </div>
