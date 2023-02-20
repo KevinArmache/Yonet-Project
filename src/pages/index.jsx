@@ -4,7 +4,6 @@ import Categories from "components/HomePageSections/Categories";
 import HowItWorks from "components/HomePageSections/HowItWorks";
 import About from "components/HomePageSections/About";
 import Action from "components/HomePageSections/Action";
-import WebsiteNavbar from "components/Navbars/WebsiteNavbar";
 
 export default function Home() {
   return (

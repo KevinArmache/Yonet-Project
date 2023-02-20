@@ -1,8 +1,11 @@
 import Button from 'components/Buttons/Button'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 import React from 'react'
 
 const Action = () => {
+  const router = useRouter()
+
   return (
     <section className='bg-primary'>
       <div className='px-4 py-6 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-12 flex flex-col lg:flex-row items-center justify-center space-x-6'>
@@ -16,8 +19,8 @@ const Action = () => {
           </p>
         </div>
         <div className='basis-1/3 mt-8 lg:mt-0 flex items-center justify-center space-x-8'>
-          <Button text="Devenir Vendeur" url="/pour-les-vendeurs" variant="outline" />
-          <Button text="Service Client" url="/assistance" variant="light" />
+          {router.pathname.includes('pour-les-vendeurs') ? null : <Button text="Devenir Vendeur" url="/pour-les-vendeurs" variant="outline" />}
+          <Button text="Commencer" url="/connexion" variant="light" />
         </div>
       </div>
     </section>
