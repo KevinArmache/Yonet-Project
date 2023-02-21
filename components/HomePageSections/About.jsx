@@ -16,7 +16,7 @@ const About = () => {
               width={1080}
               height={1080}
               alt=""
-              src="/asset/figures/sponsor.png"
+              src="/asset/figures/people-talking.png"
               className='w-full'
             />
           </div>
