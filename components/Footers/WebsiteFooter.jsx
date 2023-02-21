@@ -201,7 +201,7 @@ export const WebsiteFooter = () => {
         </div>
         <div className="flex flex-col justify-between pt-5 pb-10 border-t border-light sm:flex-row">
           <p className="text-sm text-light">
-            © Copyright {new Date().getFullYear()} Lorem Inc. All rights reserved.
+            © Copyright {new Date().getFullYear()} Yonet. Tous droits réservés.
           </p>
           <div className="flex items-center mt-4 space-x-4 sm:mt-0">
             <a
