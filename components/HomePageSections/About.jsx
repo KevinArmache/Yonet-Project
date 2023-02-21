@@ -12,7 +12,13 @@ const About = () => {
         </div>
         <div className="grid lg:grid-cols-2 lg:gap-8">
           <div>
-            <Image src="/asset/images/team.png" width={1080} height={1080} className="object-cover w-full" alt="" />
+            <Image
+              width={1080}
+              height={1080}
+              alt=""
+              src="/asset/figures/sponsor.png"
+              className='w-full'
+            />
           </div>
           <div className='py-12'>
             <h1 className='mb-8 font-sans text-xl font-bold leading-none tracking-tight text-primary sm:text-2xl'>
