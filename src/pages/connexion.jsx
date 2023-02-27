@@ -1,8 +1,62 @@
-import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
+import Image from 'next/image'
+import Link from 'next/link'
+import React, { useState } from 'react'
+import { signIn, SignInResponse } from 'next-auth/react';
+import { createPortal } from 'react-dom';
+import { EnvelopeOpenIcon } from '@heroicons/react/24/solid';
+import Head from 'next/head';
+import { toast } from 'react-hot-toast';
+
+
+const MagicLinkModal = ({ show = false, email = '' }) => {
+  if (!show) return null;
+
+  return createPortal(
+    <div className="fixed inset-0 z-10 bg-white bg-opacity-90 backdrop-filter backdrop-blur-md backdrop-grayscale">
+      <div className="min-h-screen px-6 flex flex-col items-center justify-center animate-zoomIn">
+        <div className="flex flex-col items-center justify-center text-center max-w-sm">
+          <EnvelopeOpenIcon className="shrink-0 w-12 h-12 text-primary" />
+          <h3 className="mt-2 text-2xl font-semibold">
+            Confirme ton adresse email
+          </h3>
+          <p className="mt-4 text-lg">
+            Nous venons tout juste d&apos;envoyer un email à <strong>{email}</strong>. Vérifie ta messagerie et clique sur le lien pour te connecter à Yonet.
+          </p>
+        </div>
+      </div>
+    </div>,
+    document.body
+  );
+};
 
 export default function Connexion() {
+  const [email, setEmail] = useState('');
+  const [showModal, setShowModal] = useState(false);
+
+
+  // Allow users to sign In using magic link
+  const handleSigninWithEmail = async (e) => {
+    e.preventDefault()
+    let toastId;
+    try {
+      toastId = toast.loading('Veuillez Patienter...');
+      const { error } = await signIn('email', {
+        email,
+        redirect: false,
+        callbackUrl: `${window.location.origin}/app/client`,
+      });
+      // Something went wrong
+      if (error) {
+        throw new Error(error);
+      }
+      toast.success('Success!', { id: toastId });
+      setShowModal(true);
+    } catch (err) {
+      toast.error('An error occured!', { id: toastId });
+      console.error(err.message)
+    }
+  }
+
   return (
     <>
       <Head>
@@ -28,10 +82,15 @@ export default function Connexion() {
               </Link>
             </div>
             <div className="md:w-8/12 lg:w-5/12 lg:ml-20">
-              <form>
+              <form onSubmit={handleSigninWithEmail}>
                 {/* Email input */}
                 <div className="mb-6">
-                  <input type="text" className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-primary focus:outline-none" placeholder="Adresse Email" />
+                  <input 
+                    type="text" 
+                    className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-primary focus:outline-none" placeholder="Adresse Email"
+                    value={email}
+                    onChange={e => setEmail(e.target.value)} 
+                  />
                 </div>
                 {/* Submit button */}
                 <button type="submit" className="inline-block px-7 py-3 bg-primary text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-primary active:shadow-lg transition duration-150 ease-in-out w-full" data-mdb-ripple="true" data-mdb-ripple-color="light">
@@ -69,6 +128,7 @@ export default function Connexion() {
             </div>
           </div>
         </div>
+        <MagicLinkModal show={showModal} email={email} />
       </section>
     </>
 
