@@ -1,5 +1,6 @@
 import NextAuth from 'next-auth';
 import EmailProvider from 'next-auth/providers/email';
+import GoogleProvider from 'next-auth/providers/google';
 import nodemailer from 'nodemailer';
 import { PrismaClient } from '@prisma/client';
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
@@ -26,6 +27,10 @@ export default NextAuth({
       },
       from: process.env.EMAIL_FROM,
       maxAge: 10 * 60, // Magic links are valid for 10 min only
+    }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_ID,
+      clientSecret: process.env.GOOGLE_SECRET,
     }),
   ],
   adapter: PrismaAdapter(prisma),

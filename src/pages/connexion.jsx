@@ -57,6 +57,12 @@ export default function Connexion() {
     }
   }
 
+  const handleSigninWithGoogle = () => {
+    signIn('google', {
+      callbackUrl: `${window.location.origin}/app/client`,
+    })
+  }
+
   return (
     <>
       <Head>
@@ -102,7 +108,11 @@ export default function Connexion() {
                   <p className="text-center font-semibold mx-4 mb-0">OU</p>
                 </div>
 
-                <button className="px-7 py-3 font-semibold text-sm leading-snug uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full flex justify-center items-center mb-3 bg-light text-primary" role="button" data-mdb-ripple="true" data-mdb-ripple-color="light">
+                <button
+                  className="px-7 py-3 font-semibold text-sm leading-snug uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full flex justify-center items-center mb-3 bg-light text-primary" 
+                  role="button" 
+                  onClick={() => handleSigninWithGoogle()}
+                >
                   <Image
                     src="/asset/icons/google.svg"
                     alt="Google"
