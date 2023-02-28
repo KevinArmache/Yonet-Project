@@ -40,6 +40,28 @@ const sendVerificationRequest = ({ identifier, url }) => {
 }
 
 
+const sendWelcomeEmail = async ({ user }) => {
+  const { email } = user;
+
+  try {
+    const emailFile = readFileSync(path.join(emailsDir, 'welcome.html'), {
+      encoding: 'utf8',
+    });
+    const emailTemplate = Handlebars.compile(emailFile);
+    await transporter.sendMail({
+      from: `"Yonet" ${process.env.EMAIL_FROM}`,
+      to: email,
+      subject: 'Bienvenue sur Yonet! 🎉',
+      html: emailTemplate({
+        base_url: process.env.NEXTAUTH_URL,
+        support_email: 'support@yonet.fr',
+      }),
+    });
+  } catch (error) {
+    console.log(`❌ Unable to send welcome email to user (${email})`);
+  }
+};
+
 // Instantiate Prisma Client
 const prisma = new PrismaClient();
 
@@ -71,5 +93,8 @@ export default NextAuth({
     }),
   ],
   adapter: PrismaAdapter(prisma),
-  secret: process.env.NEXT_AUTH_SECRET
+  secret: process.env.NEXT_AUTH_SECRET,
+  events: {
+    createUser: sendWelcomeEmail
+  }
 });
