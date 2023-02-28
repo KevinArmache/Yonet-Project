@@ -32,6 +32,7 @@ const MagicLinkModal = ({ show = false, email = '' }) => {
 export default function Connexion() {
   const [email, setEmail] = useState('');
   const [showModal, setShowModal] = useState(false);
+  const [loading, setLoading] = useState(false);
 
 
   // Allow users to sign In using magic link
@@ -39,6 +40,7 @@ export default function Connexion() {
     e.preventDefault()
     let toastId;
     try {
+      setLoading(true)
       toastId = toast.loading('Veuillez Patienter...');
       const { error } = await signIn('email', {
         email,
@@ -51,6 +53,7 @@ export default function Connexion() {
       }
       toast.success('Success!', { id: toastId });
       setShowModal(true);
+      setLoading(false)
     } catch (err) {
       toast.error('An error occured!', { id: toastId });
       console.error(err.message)
@@ -99,8 +102,8 @@ export default function Connexion() {
                   />
                 </div>
                 {/* Submit button */}
-                <button type="submit" className="inline-block px-7 py-3 bg-primary text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-primary active:shadow-lg transition duration-150 ease-in-out w-full" data-mdb-ripple="true" data-mdb-ripple-color="light">
-                  Se connecter
+                <button type="submit" className="inline-block px-7 py-3 bg-primary text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-primary active:shadow-lg transition duration-150 ease-in-out w-full disabled:bg-primary/50" data-mdb-ripple="true" data-mdb-ripple-color="light" disabled={loading}>
+                  {loading ? "Veuillez patienter" : "Se connecter"}
                 </button>
               </form>
               <div>
