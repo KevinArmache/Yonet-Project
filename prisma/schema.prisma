@@ -46,6 +46,13 @@ model User {
   email         String?   @unique
   emailVerified DateTime?
   image         String?
+  phoneNumber   String?
+  country       String?
+  state         String?
+  city          String?
+  isAdmin       Boolean @default(false)
+  isBanned      Boolean @default(false)
+  // TOTO: Link with users bookins, sellerprofiles, etc
   accounts      Account[]
   sessions      Session[]
 }
@@ -56,4 +63,52 @@ model VerificationToken {
   expires    DateTime
   id         String    @id @default(auto()) @map("_id") @db.ObjectId
   @@unique([identifier, token])
+}
+
+
+// Information about the seller as well as revenue (balance)
+model SellerProfile {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+}
+
+
+// Service Informations about a specific service delivered by a seller
+model Service {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+}
+
+
+// Price Range for a service (Price amount and description)
+model ServicePrice {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+}
+
+
+// Media Files related to the service (Type, Url and description)
+model ServiceMedia {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+}
+
+
+// Review of service made after a booking is closed
+model ServiceReview {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+}
+
+
+// Each time a service is booked by a user with informations about his booking
+model ServiceBooking {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+}
+
+
+// The files sent by the service owner. Whether video or image with a description for each
+model BookingMedias {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+}
+
+
+// Transactions for when user books service, when seller delivers, admin gets his comission the service and when seller withdraws money from his balance.
+model Transaction {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
 }
