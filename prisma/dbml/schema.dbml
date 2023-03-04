@@ -1,0 +1,238 @@
+//// ------------------------------------------------------
+//// THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+//// ------------------------------------------------------
+
+Table Account {
+  id String [pk]
+  userId String [not null]
+  type String [not null]
+  provider String [not null]
+  providerAccountId String [not null]
+  refresh_token String
+  access_token String
+  expires_at Int
+  token_type String
+  scope String
+  id_token String
+  session_state String
+  oauth_token_secret String
+  oauth_token String
+  user User [not null]
+
+  indexes {
+    (provider, providerAccountId) [unique]
+  }
+}
+
+Table Session {
+  id String [pk]
+  sessionToken String [unique, not null]
+  userId String [not null]
+  expires DateTime [not null]
+  user User [not null]
+}
+
+Table User {
+  id String [pk]
+  name String
+  email String [unique]
+  emailVerified DateTime
+  image String
+  phoneNumber String
+  country String
+  state String
+  city String
+  isAdmin Boolean [not null, default: false]
+  isBanned Boolean [not null, default: false]
+  sellerProfile SellerProfile
+  bookings ServiceBooking [not null]
+  transactions Transaction [not null]
+  accounts Account [not null]
+  sessions Session [not null]
+}
+
+Table VerificationToken {
+  identifier String [not null]
+  token String [unique, not null]
+  expires DateTime [not null]
+  id String [pk]
+
+  indexes {
+    (identifier, token) [unique]
+  }
+}
+
+Table SellerProfile {
+  id String [pk]
+  userId String [unique, not null]
+  user User [not null]
+  bio String
+  logo String
+  slug String [unique, not null]
+  balance Float [not null, default: 0]
+  phoneNumber String
+  email String
+  website String
+  socialLinks SocialLink [not null]
+  services Service [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table SocialLink {
+  id String [pk]
+  name String [not null]
+  url String [not null]
+  sellerId String [unique, not null]
+  seller SellerProfile [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table Service {
+  id String [pk]
+  sellerId String [unique, not null]
+  seller SellerProfile [not null]
+  name String [not null]
+  description String [not null]
+  coverImage String
+  categoryId String [not null]
+  category ServiceCategory [not null]
+  prices ServicePrice [not null]
+  medias ServiceMedia [not null]
+  bookings ServiceBooking [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table ServiceCategory {
+  id String [pk]
+  services Service [not null]
+  name String [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table ServicePrice {
+  id String [pk]
+  serviceId String [not null]
+  service Service [not null]
+  amount Float [not null]
+  description String
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table ServiceMedia {
+  id String [pk]
+  serviceId String [not null]
+  service Service [not null]
+  type MediaType [not null, default: 'image']
+  url String [not null]
+  description String
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table ServiceBooking {
+  id String [pk]
+  userId String [not null]
+  user User [not null]
+  serviceId String [not null]
+  service Service [not null]
+  medias BookingMedias [not null]
+  review BookingReview
+  startedAt DateTime [default: `now()`, not null]
+  deliveredAt DateTime
+  status BookingStatus [not null, default: 'pending']
+  transaction Transaction
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table BookingReview {
+  id String [pk]
+  bookingId String [unique, not null]
+  booking ServiceBooking [not null]
+  stars Int [not null]
+  comment String
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table BookingMedias {
+  id String [pk]
+  bookingId String [not null]
+  booking ServiceBooking [not null]
+  type MediaType [not null, default: 'image']
+  url String [not null]
+  description String
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table Transaction {
+  id String [pk]
+  bookingId String [unique]
+  booking ServiceBooking
+  userId String [not null]
+  user User [not null]
+  amount Float [not null]
+  status TransactionStatus [not null, default: 'pending']
+  type TransactionType [not null]
+  transactionMeta String
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Enum MediaType {
+  image
+  video
+  document
+}
+
+Enum BookingStatus {
+  pending
+  success
+  canceled
+}
+
+Enum TransactionStatus {
+  pending
+  success
+  failed
+}
+
+Enum TransactionType {
+  booking_payment
+  booking_cancelation
+  seller_payment
+}
+
+Ref: Account.userId > User.id [delete: Cascade]
+
+Ref: Session.userId > User.id [delete: Cascade]
+
+Ref: SellerProfile.userId - User.id [delete: Cascade]
+
+Ref: SocialLink.sellerId > SellerProfile.id [delete: Cascade]
+
+Ref: Service.sellerId > SellerProfile.id [delete: Cascade]
+
+Ref: Service.categoryId > ServiceCategory.id
+
+Ref: ServicePrice.serviceId > Service.id
+
+Ref: ServiceMedia.serviceId > Service.id
+
+Ref: ServiceBooking.userId > User.id [delete: Cascade]
+
+Ref: ServiceBooking.serviceId > Service.id
+
+Ref: BookingReview.bookingId - ServiceBooking.id
+
+Ref: BookingMedias.bookingId > ServiceBooking.id
+
+Ref: Transaction.bookingId - ServiceBooking.id
+
+Ref: Transaction.userId > User.id [delete: Cascade]

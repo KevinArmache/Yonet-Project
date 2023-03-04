@@ -5,6 +5,11 @@ generator client {
   provider = "prisma-client-js"
 }
 
+generator dbml {
+  provider = "prisma-dbml-generator"
+}
+
+
 datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
@@ -53,6 +58,9 @@ model User {
   isAdmin       Boolean @default(false)
   isBanned      Boolean @default(false)
   // TOTO: Link with users bookins, sellerprofiles, etc
+  sellerProfile SellerProfile?
+  bookings      ServiceBooking[]
+  transactions  Transaction[]
   accounts      Account[]
   sessions      Session[]
 }
@@ -69,46 +77,163 @@ model VerificationToken {
 // Information about the seller as well as revenue (balance)
 model SellerProfile {
   id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  userId        String    @db.ObjectId @unique
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  bio           String?
+  logo          String?
+  slug          String    @unique
+  balance       Float @default(0)
+  phoneNumber   String?
+  email         String?
+  website       String?
+  socialLinks   SocialLink[]
+  services      Service[]
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+}
+
+model SocialLink {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  url           String
+  sellerId      String @db.ObjectId @unique
+  seller        SellerProfile @relation(fields: [sellerId], references: [id], onDelete: Cascade)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
 }
 
 
 // Service Informations about a specific service delivered by a seller
 model Service {
   id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  sellerId      String @db.ObjectId @unique
+  seller        SellerProfile @relation(fields: [sellerId], references: [id], onDelete: Cascade)
+  name          String
+  description   String
+  coverImage    String?
+  categoryId    String @db.ObjectId
+  category      ServiceCategory @relation(fields: [categoryId], references: [id])
+  prices        ServicePrice[]
+  medias        ServiceMedia[]
+  bookings      ServiceBooking[]
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+}
+
+
+model ServiceCategory {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  services      Service[]
+  name          String
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
 }
 
 
 // Price Range for a service (Price amount and description)
 model ServicePrice {
   id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  serviceId     String @db.ObjectId
+  service       Service @relation(fields: [serviceId], references: [id])
+  amount        Float
+  description   String?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
 }
 
 
 // Media Files related to the service (Type, Url and description)
 model ServiceMedia {
   id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  serviceId     String @db.ObjectId
+  service       Service @relation(fields: [serviceId], references: [id])
+  type          MediaType @default(image)
+  url           String
+  description   String?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+}
+
+enum MediaType  {
+  image
+  video
+  document
 }
 
 
-// Review of service made after a booking is closed
-model ServiceReview {
-  id            String    @id @default(auto()) @map("_id") @db.ObjectId
-}
 
 
 // Each time a service is booked by a user with informations about his booking
 model ServiceBooking {
   id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  userId        String    @db.ObjectId
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  serviceId     String @db.ObjectId
+  service       Service @relation(fields: [serviceId], references: [id])
+  medias        BookingMedias[]
+  review        BookingReview?
+  startedAt     DateTime @default(now())
+  deliveredAt   DateTime?
+  status        BookingStatus  @default(pending)
+  transaction   Transaction?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
 }
 
+enum BookingStatus {
+  pending
+  success
+  canceled
+}
+
+// Review of service made after a booking is closed
+model BookingReview {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  bookingId     String @db.ObjectId @unique
+  booking       ServiceBooking @relation(fields: [bookingId], references: [id])
+  stars         Int
+  comment       String?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+}
 
 // The files sent by the service owner. Whether video or image with a description for each
 model BookingMedias {
   id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  bookingId     String @db.ObjectId
+  booking       ServiceBooking @relation(fields: [bookingId], references: [id])
+  type          MediaType @default(image)
+  url           String
+  description   String?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
 }
 
 
 // Transactions for when user books service, when seller delivers, admin gets his comission the service and when seller withdraws money from his balance.
 model Transaction {
   id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  bookingId     String? @db.ObjectId @unique
+  booking      ServiceBooking? @relation(fields: [bookingId], references: [id])
+  userId        String    @db.ObjectId
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  amount        Float
+  status        TransactionStatus @default(pending)
+  type          TransactionType
+  transactionMeta String?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+}
+
+
+enum TransactionStatus {
+  pending
+  success
+  failed
+}
+
+enum TransactionType {
+  booking_payment
+  booking_cancelation
+  seller_payment
 }
