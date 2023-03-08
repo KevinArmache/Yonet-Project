@@ -109,6 +109,7 @@ Table ServiceCategory {
   id String [pk]
   services Service [not null]
   name String [not null]
+  slug String [not null]
   image String
   icon String
   description String
