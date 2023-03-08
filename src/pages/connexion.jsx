@@ -1,12 +1,33 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState } from 'react'
-import { signIn, SignInResponse } from 'next-auth/react';
+import { getSession, signIn } from 'next-auth/react';
 import { createPortal } from 'react-dom';
 import { EnvelopeOpenIcon } from '@heroicons/react/24/solid';
 import Head from 'next/head';
 import { toast } from 'react-hot-toast';
 
+
+export async function getServerSideProps(context) {
+  // Check if user is authenticated
+  const session = await getSession(context);
+
+  // If not, redirect to the homepage
+  if (!session) {
+    return {
+      props: {
+        
+      },
+    };
+  } else {
+    return {
+      redirect: {
+        destination: '/app/client',
+        permanent: false,
+      },
+    };
+  }
+}
 
 const MagicLinkModal = ({ show = false, email = '' }) => {
   if (!show) return null;
