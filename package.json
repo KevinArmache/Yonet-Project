@@ -22,12 +22,14 @@
     "prisma": "^4.10.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-hot-toast": "^2.4.0"
+    "react-hot-toast": "^2.4.0",
+    "slug": "^8.2.2"
   },
   "devDependencies": {
     "@iconify/react": "^4.1.0",
     "@types/react": "18.0.28",
     "autoprefixer": "^10.4.13",
+    "next-connect": "^0.13.0",
     "nprogress": "^0.2.0",
     "postcss": "^8.4.21",
     "prisma-dbml-generator": "^0.10.0",
