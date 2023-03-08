@@ -4,10 +4,26 @@ import SearchForm from "components/Forms/SearchForm";
 import CategoriesDropDown from "components/DropDowns/CategoriesDropDown";
 import { Transition } from "@headlessui/react";
 import Button from "components/Buttons/Button";
+import { signOut, useSession } from "next-auth/react";
+import { UserIcon } from "@heroicons/react/24/solid";
+import Image from "next/image";
+import UserDropDown from "components/DropDowns/UserDropDown";
+
+const userNavigation = [
+  { name: 'Profil', href: '/app/client/profil' },
+  { name: 'Paramètres', href: '/app/client/parametres' },
+  { name: 'Commandes', href: '/app/client/commandes' },
+  { name: 'Favoris', href: '/app/client/favoris' },
+  { name: "Compte Vendeur", href: "/app/vendeur" }
+]
 
 const WebsiteNavbar = ({solid}) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchBarVisible, setIsSearchBarVisible] = useState(false);
+
+  const { data: session, status } = useSession();
+  const user = session?.user;
+  const isLoadingUser = status === 'loading';
 
   return (
     <nav className={`${solid ? "bg-white" : "bg-light backdrop-filter backdrop-blur-lg bg-opacity-30"} sticky rounded top-0 z-50 shadow-md`}>
@@ -42,8 +58,11 @@ const WebsiteNavbar = ({solid}) => {
             </div>
           </div>
           <div className="hidden xl:flex items-center space-x-4">
-            <Button text="Connexion" variant="noborder" url="/connexion" />
-            <Button text="Pour les vendeurs" url="/pour-les-vendeurs" />
+            {!user ? (
+              <><Button text="Connexion" variant="noborder" url="/connexion" /><Button text="Pour les vendeurs" url="/pour-les-vendeurs" /></>
+            ) : (
+              <UserDropDown />
+            )}
           </div>
           <div className="xl:hidden">
             <div className="flex items-center justify-center">
@@ -198,19 +217,69 @@ const WebsiteNavbar = ({solid}) => {
                           <li>
                             <CategoriesDropDown />
                           </li>
+                          {isLoadingUser ? (
+                            <li>
+                              <div className="h-8 w-[75px] bg-gray-200 animate-pulse rounded-md" />
+                            </li>
+                          ) : (
+                            <>
+                              <li className="">
+                                {userNavigation.map((item) => (
+                                  <Link
+                                    key={item.name}
+                                    as="a"
+                                    href={item.href}
+                                    className="block rounded-md py-2 text-secondary hover:bg-primary hover:text-white"
+                                  >
+                                    {item.name}
+                                  </Link>
+                                ))}
+                              </li>
+                              <li className="flex items-center">
+                                <div className="flex-shrink-0">
+                                  {user?.image ? (
+                                    <Image
+                                      src={user?.image}
+                                      alt={user?.name || 'Avatar'}
+                                      width={32}
+                                      height={32} />
+                                  ) : (
+                                    <UserIcon className="text-secondary w-6 h-6" />
+                                  )}
+                                </div>
+                                <div className="ml-3">
+                                  <div className="leading-none text-secondary">{user?.name}</div>
+                                  <div className="text-sm font-medium leading-none text-secondary">{user?.email}</div>
+                                </div>
+                              </li>
+                            </>
+                          )}
                         </ul>
                       </nav>
-                      <div className="absolute bottom-24 left-0 flex flex-col w-full space-y-2">
-                        <Button
-                          text="Connexion"
-                          variant="noborder"
-                          url="/connexion"
-                        />
-                        <Button
-                          text="Pour les vendeurs"
-                          url="/pour-les-vendeurs"
-                        />
-                      </div>
+
+                      {!session ? (
+                        <div className="absolute bottom-24 left-0 flex flex-col w-full space-y-2">
+                          <Button
+                            text="Connexion"
+                            variant="noborder"
+                            url="/connexion"
+                          />
+                          <Button
+                            text="Pour les vendeurs"
+                            url="/pour-les-vendeurs"
+                          />
+                        </div>
+
+                      ) : (
+                        <div className="absolute bottom-24 left-0">
+                          <button
+                            className="block rounded-md px-3 py-2 text-base font-medium text-secondary hover:bg-primary hover:text-white"
+                            onClick={signOut}
+                          >
+                             Déconnexion
+                          </button>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
