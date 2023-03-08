@@ -46,6 +46,7 @@ export async function getServerSideProps(context) {
 const AdminHome = () => {
   return (
     <AdminLayout title="Tableau de bord">
+      Hey
     </AdminLayout>
   )
 }
