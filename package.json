@@ -29,6 +29,7 @@
     "@iconify/react": "^4.1.0",
     "@types/react": "18.0.28",
     "autoprefixer": "^10.4.13",
+    "next-connect": "^0.13.0",
     "nprogress": "^0.2.0",
     "postcss": "^8.4.21",
     "prisma-dbml-generator": "^0.10.0",
