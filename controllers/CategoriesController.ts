@@ -1,39 +1,50 @@
-import catchAsyncErrors from "middlewares/catchAsyncErrors";
+import { NextApiRequest, NextApiResponse } from "next";
 import { getSession } from "next-auth/react";
 import slug from "slug";
-import { prisma } from "utils/prisma";
+import catchAsyncErrors from "../middlewares/catchAsyncErrors";
+import prisma from "../utils/prisma";
 
 // @route POST api/admin/categories
 // @desc create a new category
 // @access PRIVATE && ADMIN
 
 
-const postCategory = catchAsyncErrors(async (req, res) => {
-  const session = await getSession();
+const postCategory = catchAsyncErrors(async (req: NextApiRequest, res: NextApiResponse) => {
+  const session = await getSession({ req });
+
 
   const { name, image, icon, description } = req.body
 
-  if (session && session.user.isAdmin) {
-    const category = await prisma.serviceCategory.create({
-      data: {
-        name,
-        slug: slug(name),
-        image,
-        icon,
-        description
-      }
+  if (session) {
+    const user = await prisma.user.findUnique({
+      where: { email: session.user.email }
     })
 
-    res.status(200).json({
-      status: "success",
-      data: category
-    })
+    if (user.isAdmin) {
+      const category = await prisma.serviceCategory.create({
+        data: {
+          name,
+          slug: slug(name),
+          image,
+          icon,
+          description
+        }
+      })
+  
+      res.status(200).json({
+        status: "success",
+        data: category
+      })
+    } else {
+      res.status(403).json({
+        status: "You are not authorized to access this route",
+      })
+    }
   } else {
     res.status(401).json({
       status: "Unauthorized",
     })
   }
-
 })
 
 
@@ -58,11 +69,13 @@ const getCategories = catchAsyncErrors(async (req, res) => {
 // @desc get categories details with services in category
 // @access PUBLIC 
 
-const getCategoryBySlug = catchAsyncErrors(async (req, res) => {
+const getCategoryBySlug = catchAsyncErrors(async (req: NextApiRequest, res: NextApiResponse) => {
+
+  
  
   const categoryWithServices = await prisma.serviceCategory.findUnique({
     where: {
-      slug: req.query.slug,
+      id: String(req.query.slug)
     },
     include: {
       services: {
