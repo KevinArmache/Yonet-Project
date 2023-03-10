@@ -125,7 +125,7 @@ model ServiceCategory {
   id            String    @id @default(auto()) @map("_id") @db.ObjectId
   services      Service[]
   name          String
-  slug          String
+  slug          String @unique
   image         String?
   icon          String?
   description   String?

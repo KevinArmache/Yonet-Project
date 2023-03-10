@@ -1,7 +1,7 @@
 import AdminLayout from 'layouts/AdminLayout'
 import { getSession } from 'next-auth/react';
 import React from 'react'
-import { prisma } from 'utils/prisma';
+import prisma from '../../../utils/prisma';
 
 export async function getServerSideProps(context) {
   // Check if user is authenticated

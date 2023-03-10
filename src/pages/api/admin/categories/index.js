@@ -1,7 +1,6 @@
 import nc from 'next-connect';
-
-import { postCategory } from 'controllers/CategoriesController'; 
-import onError from 'middlewares/error';
+import onError from '../../../../../middlewares/error'
+import { postCategory, getCategories } from  '../../../../../controllers/CategoriesController'
 
 
 const handler = nc({ onError })
@@ -9,6 +8,9 @@ const handler = nc({ onError })
 
 // Create a new category
 handler.post(postCategory);
+
+
+handler.get(getCategories)
 
 
 export default handler;

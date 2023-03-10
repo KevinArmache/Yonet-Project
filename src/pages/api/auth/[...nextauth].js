@@ -96,5 +96,11 @@ export default NextAuth({
   secret: process.env.NEXT_AUTH_SECRET,
   events: {
     createUser: sendWelcomeEmail
-  }
+  },
+  callbacks: {
+    async session({ session, token, user }) {
+      session.user.isAdmin = user.isAdmin; // Add role value to user object so it is passed along with session
+      return session;
+    }
+  },
 });
