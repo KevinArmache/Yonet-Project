@@ -1,7 +1,6 @@
 import "tailwindcss/tailwind.css";
 import "../styles/globals.css";
-
-import { League_Spartan } from "@next/font/google";
+import localFont from '@next/font/local'
 import { Toaster } from "react-hot-toast";
 import Head from "next/head";
 import { SessionProvider as AuthProvider } from 'next-auth/react';
@@ -9,8 +8,9 @@ import NProgress from 'nprogress';
 import { Router } from 'next/router';
 
 
-
-const spartan = League_Spartan({ subsets: ["latin"] });
+const myFont = localFont({
+   src: '../../public/asset/fonts/League_Spartan/LeagueSpartan-VariableFont_wght.ttf'
+})
 
 export default function App({ Component, pageProps: { session, ...pageProps } }) {
   Router.events.on('routeChangeStart', () => {
@@ -28,7 +28,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
       <Head>
         <link rel="icon" href="/yonet.ico" />
       </Head>
-      <div className={spartan.className}>
+      <div className={myFont.className}>
         <Component {...pageProps} />
         <Toaster />
       </div>

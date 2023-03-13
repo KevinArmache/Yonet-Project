@@ -66,6 +66,7 @@ Table SellerProfile {
   id String [pk]
   userId String [unique, not null]
   user User [not null]
+  name String [not null]
   bio String
   logo String
   slug String [unique, not null]
