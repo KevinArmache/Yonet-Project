@@ -3,6 +3,7 @@ import SellerProfileForm from '../../../../components/Forms/SellerProfileForm'
 import WebsiteLayout from 'layouts/WebsiteLayout'
 import Breadcrumb from '../../../../components/Navbars/Breadcrumb';
 import { getSession } from 'next-auth/react';
+import axios from 'axios';
 
 export async function getServerSideProps(context) {
   // Check if user is authenticated
@@ -27,7 +28,11 @@ export async function getServerSideProps(context) {
 }
 
 const ProfilVendeur = () => {
-  const saveProfile = (data) => console.log(data); 
+  const saveProfile = async (data) => {
+    const res = await axios.post('/api/vendeur/profil', data); 
+
+    console.log(res.data)
+  }
 
   return (
     <WebsiteLayout title="Mon profil vendeur">
@@ -35,6 +40,7 @@ const ProfilVendeur = () => {
       <SellerProfileForm
         onSubmit={saveProfile}
         buttonText="Enregistrer"
+        redirectPath='/app/vendeur'
       />
     </WebsiteLayout>
   )
