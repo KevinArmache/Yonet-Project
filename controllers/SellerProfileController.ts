@@ -54,9 +54,6 @@ const getUserSellerProfile = catchAsyncErrors(async (req: NextApiRequest, res: N
   const session = await getSession({ req });
 
   if (session) {
-    const { bio, logo, phoneNumber, email, website, name  }: SellerProfile = req.body
-
-
     const user = await prisma.user.findUnique({
       where: { email: session.user.email }
     })

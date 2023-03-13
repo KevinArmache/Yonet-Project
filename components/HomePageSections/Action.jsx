@@ -1,10 +1,16 @@
 import Button from 'components/Buttons/Button'
-import Image from 'next/image'
+import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import React from 'react'
+import SkeletonLoader from '../SkeletonLoader'
 
 const Action = () => {
   const router = useRouter()
+
+  const { data: session, status } = useSession();
+  const user = session?.user;
+  const isLoadingUser = status === 'loading';
+
 
   return (
     <section className='bg-primary'>
@@ -18,9 +24,15 @@ const Action = () => {
             Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. 
           </p>
         </div>
-        <div className='basis-1/3 mt-8 lg:mt-0 flex items-center justify-center space-x-8'>
-          {router.pathname.includes('pour-les-vendeurs') ? null : <Button text="Devenir Vendeur" url="/pour-les-vendeurs" variant="outline" />}
-          <Button text="Commencer" url="/connexion" variant="light" />
+        <div className='w-full md:basis-1/3 mt-8 lg:mt-0 flex items-center justify-center md:space-x-8 space-x-0'>
+          {isLoadingUser ? (
+            <p className='text-white'>...</p>
+          ) : (
+            <>
+              {router.pathname.includes('pour-les-vendeurs') || router.pathname.includes('app') ? null : <Button text="Pour les vendeurs" url="/pour-les-vendeurs" variant="outline" />}
+              <Button text={user ? 'Créer votre compte vendeur' : 'Commencer'} url={user ? '/app/vendeur/profil' : '/connexion'} variant="light" />
+            </>
+          )}
         </div>
       </div>
     </section>
