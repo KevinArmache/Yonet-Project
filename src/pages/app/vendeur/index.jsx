@@ -1,9 +1,12 @@
+import WebsiteLayout from 'layouts/WebsiteLayout'
 import React from 'react'
 
-const Seller = () => {
+const SellerHome = () => {
   return (
-    <div>Seller Profile</div>
+    <WebsiteLayout title="Mon compte vendeur">
+      <div>Accueil Vendeur</div>
+    </WebsiteLayout>
   )
 }
 
-export default Seller
+export default SellerHome

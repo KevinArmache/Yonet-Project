@@ -79,6 +79,7 @@ model SellerProfile {
   id            String    @id @default(auto()) @map("_id") @db.ObjectId
   userId        String    @db.ObjectId @unique
   user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name          String
   bio           String?
   logo          String?
   slug          String    @unique
