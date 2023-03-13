@@ -7,7 +7,7 @@ import Link from "next/link";
 import { Fragment } from "react";
 
 const userNavigation = [
-  { name: 'Profil', href: '/app/client/profil' },
+  { name: 'Mon compte', href: '/app/client/' },
   { name: 'Paramètres', href: '/app/client/parametres' },
   { name: 'Commandes', href: '/app/client/commandes' },
   { name: 'Favoris', href: '/app/client/favoris' },
